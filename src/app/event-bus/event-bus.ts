@@ -48,6 +48,7 @@ class EventBus implements Subject {
             .forEach(el => el.notify(data));
     }
 
+    //
 
     private observersPerType(eventType: string): Observer[] {
 

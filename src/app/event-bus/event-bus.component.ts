@@ -15,7 +15,7 @@ export class EventBusComponent implements OnInit {
 
     console.log ("Data broadcasted");
     globalEventBus.notifyObservers(LESSONS_LIST_AVAILABLE, testLessons.slice(0));
-    globalEventBus.notifyObservers1(testLessons.slice(0));
+    //globalEventBus.notifyObservers1(testLessons.slice(0));
     }
 
   addLesson(val){
