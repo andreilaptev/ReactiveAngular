@@ -12,11 +12,29 @@ interface Subject {
     registerObserver(eventType: string, obs: Observer);
     unregisterObserver(eventType: string,obs: Observer);
     notifyObservers(eventType: string,data: any);
+
+    registerObserver1(obs: Observer);
+    unregisterObserver1(obs: Observer);
+    notifyObservers1(data: any);
 }
 
 class EventBus implements Subject {
 
     private observers: {[key: string]: Observer[]} = {};
+
+    private observers1: Observer[] = [];
+    
+    registerObserver1(obs: Observer) {
+        this.observers1.push(obs);
+    }
+    unregisterObserver1(obs: Observer) {
+        _.remove(this.observers1, el => el === obs);
+    }
+    notifyObservers1(data: any) {
+        this.observers1.forEach(el => el.notify(data));
+    }
+
+ 
 
     registerObserver(eventType: string, obs: Observer) {
         this.observersPerType(eventType).push(obs);

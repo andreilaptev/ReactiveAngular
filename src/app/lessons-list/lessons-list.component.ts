@@ -14,14 +14,15 @@ export class LessonsListComponent implements OnInit, Observer {
     console.log("Subscribed");
     debugger
     globalEventBus.registerObserver(LESSONS_LIST_AVAILABLE, this);
+    //globalEventBus.registerObserver1(this);
   }
 
   lessons: Lesson[] = [];
 
   ngOnInit() {
 
-   //console.log("Subscribed");
-   //globalEventBus.registerObserver(LESSONS_LIST_AVAILABLE, this);
+   console.log("Subscribed");
+   globalEventBus.registerObserver(LESSONS_LIST_AVAILABLE, this);
   }
 
   notify(data: Lesson[]) {
