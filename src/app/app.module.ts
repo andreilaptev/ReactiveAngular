@@ -2,10 +2,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { BrowserEventsComponent } from './browser-events/browser-events.component';
+import { EventBusComponent } from './event-bus/event-bus.component';
+import { LessonsListComponent } from './lessons-list/lessons-list.component';
+import { LessonsCounterComponent } from './lessons-counter/lessons-counter.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BrowserEventsComponent,
+    EventBusComponent,
+    LessonsListComponent,
+    LessonsCounterComponent
   ],
   imports: [
     BrowserModule
