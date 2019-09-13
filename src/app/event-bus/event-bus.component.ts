@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { globalEventBus } from './event-bus';
+import { testLessons } from '../shared/model/test-lesson';
 
 @Component({
   selector: 'event-bus',
@@ -10,8 +12,10 @@ export class EventBusComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
-  }
+
+    console.log ("Data broadcasted");
+    globalEventBus.notifyObservers(testLessons);
+    }
 
   addLesson(val){
 

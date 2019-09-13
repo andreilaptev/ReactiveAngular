@@ -1,3 +1,5 @@
+import * as _ from "lodash";
+
 export interface Observer {
     notify(data: any);
 }
@@ -17,10 +19,12 @@ class EventBus implements Subject {
     }    
     
     unregisterObserver(obs: Observer) {
-         
+         _.remove(this.observers, el => el === obs);
     }
     notifyObservers(data: any) {
-         
+         this.observers.forEach(el => el.notify(data));
     }
 
 }
+
+export const globalEventBus = new EventBus();
