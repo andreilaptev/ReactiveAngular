@@ -12,7 +12,7 @@ export class LessonsListComponent implements OnInit, Observer {
 
   constructor() { 
     console.log("Subscribed");
-    debugger
+    //debugger
     globalEventBus.registerObserver(LESSONS_LIST_AVAILABLE, this);
     //globalEventBus.registerObserver1(this);
   }

@@ -34,7 +34,7 @@ class EventBus implements Subject {
         this.observers1.forEach(el => el.notify(data));
     }
 
- 
+    /// Simplified version - no event types
 
     registerObserver(eventType: string, obs: Observer) {
         this.observersPerType(eventType).push(obs);
@@ -49,12 +49,14 @@ class EventBus implements Subject {
     }
 
 
-    private observersPerType(eventType: string){
+    private observersPerType(eventType: string): Observer[] {
+
+        debugger
         const observersPerType = this.observers[eventType];
         if(!observersPerType) {
-            this.observersPerType[eventType] = [];
+            this.observers[eventType] = [];
         }
-        return this.observersPerType[eventType];
+        return this.observers[eventType];
     }
 
 }
