@@ -1,28 +1,42 @@
 import * as _ from "lodash";
 
+// Defining event types
+export const LESSONS_LIST_AVAILABLE = "NEW_LIST_AVAILABLE";
+export const ADD_NEW_LESSON = "ADD_NEW_LESSON";
+
 export interface Observer {
     notify(data: any);
 }
 
 interface Subject {
-    registerObserver(obs: Observer);
-    unregisterObserver(obs: Observer);
-    notifyObservers(data: any);
+    registerObserver(eventType: string, obs: Observer);
+    unregisterObserver(eventType: string,obs: Observer);
+    notifyObservers(eventType: string,data: any);
 }
 
 class EventBus implements Subject {
 
-    private observers: Observer[] = [];
+    private observers: {[key: string]: Observer[]} = {};
 
-    registerObserver(obs: Observer) {
-        this.observers.push(obs);
+    registerObserver(eventType: string, obs: Observer) {
+        this.observersPerType(eventType).push(obs);
     }    
     
-    unregisterObserver(obs: Observer) {
-         _.remove(this.observers, el => el === obs);
+    unregisterObserver(eventType: string, obs: Observer) {
+         _.remove(this.observersPerType(eventType), el => el === obs);
     }
-    notifyObservers(data: any) {
-         this.observers.forEach(el => el.notify(data));
+    notifyObservers(eventType: string, data: any) {
+         this.observersPerType(eventType)
+            .forEach(el => el.notify(data));
+    }
+
+
+    private observersPerType(eventType: string){
+        const observersPerType = this.observers[eventType];
+        if(!observersPerType) {
+            this.observersPerType[eventType] = [];
+        }
+        return this.observersPerType[eventType];
     }
 
 }
